@@ -1,41 +1,48 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { counterActions } from '../store/index';
+
 import classes from './Counter.module.css';
+
 
 const Counter = () => {
 
-  const counter = useSelector((state)=> state.counter)
+  const counter = useSelector((state)=> state.counter.counter)
+  const show = useSelector((state)=> state.counter.showCounter)
+
   const dispatch = useDispatch()
 
 
   const incrementHandler = ()=>{
-    dispatch({ type: 'increment'})
+    dispatch(counterActions.increment())               // we dispatch the object of which is called action and can have multiple values
   }
 
   const decrementHandler = ()=>{
-    dispatch({ type: 'decrement'})
+    dispatch(counterActions.decrement())
   }
 
-  const incrementByFiveHandler = ()=>{
-    dispatch({type: 'incrementBy5'})
+  const increaseHandler = ()=>{
+    dispatch(counterActions.increase(10))      // properties are called payload
   }
-  const decrementByFiveHandler = ()=>{
-    dispatch({type: 'decrementBy5'})
-  }
+  // const decrementByFiveHandler = ()=>{
+  //   dispatch(counterActions.decrease)
+  // }
 
 
-  // const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch(counterActions.toggleCounter())
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
-        <button onClick={incrementByFiveHandler}>Increment by 5</button>
+        <button onClick={increaseHandler}>Increase by given value</button>
         <button onClick={decrementHandler}>Decrement</button>
-        <button onClick={decrementByFiveHandler}>Decrement by 5</button>
+        {/* <button onClick={'decrementByFiveHandler'}>Decrease by 5</button> */}
       </div>
-      <button onClick={'toggleCounterHandler'}>Toggle Counter</button>
+      <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
   );
 };
