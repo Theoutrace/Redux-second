@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { counterActions } from '../store/index';
+import { counterActions } from '../store/Counter';
 import classes from './Counter.module.css';
 
 
@@ -22,7 +22,7 @@ const Counter = () => {
 
   const increaseHandler = ()=>{
     dispatch(counterActions.increase(10))      // properties are called payload
-    //  this 'action' gets passed like this as object {type: SOME_UNIQUE_IDENTIFIERS, payload: 10} so need to access this in same way
+    //  this 'action' gets passed like this as {type: SOME_UNIQUE_IDENTIFIERS, payload: 10} so need to access this in same way
   }
 
 
