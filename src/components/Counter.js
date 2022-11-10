@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { counterActions } from '../store/index';
-
 import classes from './Counter.module.css';
 
 
 const Counter = () => {
 
-  const counter = useSelector((state)=> state.counter.counter)
+  const counter = useSelector((state)=> state.counter.counter)     // this is the current state value
+  // console.log(counter);
   const show = useSelector((state)=> state.counter.showCounter)
 
   const dispatch = useDispatch()
@@ -22,10 +22,8 @@ const Counter = () => {
 
   const increaseHandler = ()=>{
     dispatch(counterActions.increase(10))      // properties are called payload
+    //  this 'action' gets passed like this as object {type: SOME_UNIQUE_IDENTIFIERS, payload: 10} so need to access this in same way
   }
-  // const decrementByFiveHandler = ()=>{
-  //   dispatch(counterActions.decrease)
-  // }
 
 
   const toggleCounterHandler = () => {
@@ -40,7 +38,6 @@ const Counter = () => {
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increase by given value</button>
         <button onClick={decrementHandler}>Decrement</button>
-        {/* <button onClick={'decrementByFiveHandler'}>Decrease by 5</button> */}
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>

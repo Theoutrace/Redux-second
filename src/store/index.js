@@ -17,6 +17,7 @@ const counterSlice = createSlice({
       state.counter--;
     },
     increase(state, action) {
+      // console.log(action);    // {type: 'counter/increase', payload: 10}
       state.counter = state.counter + action.payload;
     },
     toggleCounter(state) {
@@ -24,6 +25,7 @@ const counterSlice = createSlice({
     },
   },
 });
+
 
 const initialAuthState = { isAuthenticated: false };
 
@@ -50,6 +52,8 @@ const store = configureStore({
 
 // step 3 is to connect this store to components so that they can dispatch actions and listen to store state values.
 
-export const counterActions = counterSlice.actions;
+console.log(counterSlice);
+
+export const counterActions = counterSlice.actions;    // we pass actions from here
 export const authActions = authSlice.actions;
 export default store;
